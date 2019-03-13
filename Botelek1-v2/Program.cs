@@ -45,6 +45,8 @@ namespace Botelek1_v2
                 // Logging
                 .AddLogging()
                 .AddSingleton<LogService>()
+                // Audio
+                .AddSingleton<AudioService>()
                 // Extra
                 .AddSingleton(_config)
                 .AddSingleton(new LiteDatabase("bot.db"))
@@ -60,9 +62,9 @@ namespace Botelek1_v2
                 .Build();
         }
 
-        public static string GetConfigRoot()
+        private static string GetConfigRoot()
         {
-            // Get whether the app is being launched from / (deployed) or /src/Botelek1 (debug)
+            // Get whether the app is being launched from / (deployed) or /src/Botelek1-v2 (debug)
 
             var cwd = Directory.GetCurrentDirectory();
             var sln = Directory.GetFiles(cwd).Any(f => f.Contains("Botelek1-v2.sln"));
